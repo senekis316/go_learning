@@ -1,7 +1,7 @@
 FROM golang:1.16-buster as build
 WORKDIR /app
 COPY ./ /app/ 
-RUN go build -o /go-http-server
+RUN CGO_ENABLED=0 go build -o /go-http-server
 
 FROM alpine:3.10
 WORKDIR /
