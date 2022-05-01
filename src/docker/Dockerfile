@@ -9,5 +9,4 @@ COPY --from=build /go-http-server /go-http-server
 ENV GOPROXY https://goproxy.cn
 ENV GOHTTPSERVERPORT :8080
 EXPOSE 8080
-USER nonroot:nonroot
 ENTRYPOINT ["/go-http-server"]
