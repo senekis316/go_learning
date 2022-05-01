@@ -56,11 +56,15 @@ func index(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	os.Setenv("VERSION", "1.0")
+	port := os.Getenv("GoHttpServerPort")
+	if port == "" {
+		port = ":8080"
+	}
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", index)
 	mux.HandleFunc("/healthz", healthz)
-	if err := http.ListenAndServe(":8080", logRequestHandler(mux)); err != nil {
+	if err := http.ListenAndServe(port, logRequestHandler(mux)); err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println("Http服务器开始监听")
